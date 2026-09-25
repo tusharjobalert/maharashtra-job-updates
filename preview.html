@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maharashtra Job Updates | Latest Jobs</title>
+<meta name="description" content="Maharashtra Job Updates - Government, private, 10th, 12th pass and district-wise job vacancies.">
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033}
+header{background:linear-gradient(135deg,#123b8f,#1769aa);color:white;padding:18px 5%;position:sticky;top:0;z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;max-width:1200px;margin:auto}
+.logo{font-size:24px;font-weight:800}.nav a{color:white;text-decoration:none;margin-left:18px;font-weight:600}
+.hero{background:linear-gradient(135deg,#eaf3ff,#fff);padding:55px 5%;text-align:center}
+.hero h1{font-size:42px;margin:10px 0;color:#123b8f}.hero p{font-size:18px;color:#536070}
+.search{max-width:760px;margin:25px auto;display:flex;background:white;padding:8px;border-radius:12px;box-shadow:0 5px 20px #0001}
+.search input{flex:1;border:0;padding:15px;font-size:16px;outline:0}.search button,.apply{background:#ff7a00;color:white;border:0;padding:14px 22px;border-radius:8px;font-weight:700;cursor:pointer}
+.container{max-width:1200px;margin:35px auto;padding:0 20px}.section-title{display:flex;justify-content:space-between;align-items:center}
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}.filter{padding:10px 15px;border:1px solid #d7dce5;background:white;border-radius:20px;cursor:pointer}
+.jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:white;border-radius:14px;padding:20px;box-shadow:0 4px 15px #0000000d;border:1px solid #e5e8ee}
+.badge{display:inline-block;background:#e8f1ff;color:#1553a6;padding:6px 10px;border-radius:20px;font-size:12px;font-weight:700}.card h3{margin:13px 0 8px}.meta{color:#5e6878;font-size:14px;line-height:1.8}.card .apply{display:block;text-align:center;text-decoration:none;margin-top:15px}
+.districts{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.district{background:white;padding:15px;text-align:center;border-radius:10px;border:1px solid #e2e6ed;cursor:pointer}
+footer{margin-top:50px;background:#101b2d;color:#dce4ef;padding:35px 5%;text-align:center}
+@media(max-width:850px){.jobs{grid-template-columns:repeat(2,1fr)}.districts{grid-template-columns:repeat(3,1fr)}.hero h1{font-size:32px}}
+@media(max-width:550px){.nav a{display:none}.jobs{grid-template-columns:1fr}.districts{grid-template-columns:repeat(2,1fr)}.search{flex-direction:column}.search button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+<div class="nav">
+<div class="logo">🇮🇳 Maharashtra Job Updates</div>
+<nav><a href="#">Home</a><a href="#jobs">Latest Jobs</a><a href="#districts">Districts</a><a href="#contact">Contact</a></nav>
+</div>
+</header>
+
+<section class="hero">
+<h1>Latest Maharashtra Jobs 2026</h1>
+<p>Government • Private • 10th Pass • 12th Pass • District-wise Jobs</p>
+<div class="search">
+<input id="search" placeholder="Search job, district, qualification...">
+<button onclick="searchJobs()">Search Jobs</button>
+</div>
+</section>
+
+<main class="container">
+<section id="jobs">
+<div class="section-title"><h2>🔥 Latest Jobs</h2><span id="count"></span></div>
+<div class="filters">
+<button class="filter" onclick="filterJobs('All')">All</button>
+<button class="filter" onclick="filterJobs('Government')">Government</button>
+<button class="filter" onclick="filterJobs('Private')">Private</button>
+<button class="filter" onclick="filterJobs('10th Pass')">10th Pass</button>
+<button class="filter" onclick="filterJobs('12th Pass')">12th Pass</button>
+</div>
+<div class="jobs" id="jobList"></div>
+</section>
+
+<section id="districts" style="margin-top:45px">
+<h2>📍 Jobs by District</h2>
+<div class="districts">
+<div class="district">Bhandara</div><div class="district">Nagpur</div><div class="district">Pune</div>
+<div class="district">Mumbai</div><div class="district">Nashik</div><div class="district">Amravati</div>
+<div class="district">Chandrapur</div><div class="district">Wardha</div><div class="district">Akola</div>
+<div class="district">Thane</div><div class="district">Kolhapur</div><div class="district">Aurangabad</div>
+</div>
+</section>
+</main>
+
+<footer id="contact">
+<h3>Maharashtra Job Updates</h3>
+<p>Latest job information in Maharashtra.</p>
+<p>⚠️ Always verify eligibility, dates and application details on the official recruitment notification before applying.</p>
+<p>© 2026 Maharashtra Job Updates</p>
+</footer>
+
+<script>
+const jobs=[
+{title:"Maharashtra Government Recruitment",type:"Government",qual:"10th / 12th Pass",loc:"Maharashtra",date:"Check Official Notification"},
+{title:"India Post GDS Recruitment",type:"Government",qual:"10th Pass",loc:"Maharashtra",date:"Check Official Notification"},
+{title:"Police Recruitment",type:"Government",qual:"12th Pass",loc:"Maharashtra",date:"Check Official Notification"},
+{title:"Security Guard Vacancy",type:"Private",qual:"8th / 10th Pass",loc:"Bhandara",date:"Contact Employer"},
+{title:"Warehouse Helper Jobs",type:"Private",qual:"10th Pass",loc:"Nagpur",date:"Contact Employer"},
+{title:"Bank Support Staff Vacancy",type:"Private",qual:"12th Pass",loc:"Maharashtra",date:"Check Employer Details"}
+];
+let current="All";
+function render(data=jobs){
+const box=document.getElementById("jobList");
+box.innerHTML=data.map(j=>`<article class="card">
+<span class="badge">${j.type}</span><h3>${j.title}</h3>
+<div class="meta">🎓 Qualification: ${j.qual}<br>📍 Location: ${j.loc}<br>📅 ${j.date}</div>
+<a class="apply" href="#" onclick="alert('Add the official application URL for this job.');return false;">Apply / Details</a>
+</article>`).join("");
+document.getElementById("count").textContent=data.length+" jobs";
+}
+function filterJobs(type){
+current=type;
+let data=type==="All"?jobs:jobs.filter(j=>j.type===type||j.qual.includes(type));
+render(data);
+}
+function searchJobs(){
+const q=document.getElementById("search").value.toLowerCase();
+render(jobs.filter(j=>(j.title+" "+j.type+" "+j.qual+" "+j.loc).toLowerCase().includes(q)));
+}
+render();
+</script>
+</body>
+</html>
